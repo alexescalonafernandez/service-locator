@@ -124,9 +124,9 @@ class ServiceProvider:
             return _instance
 
         if self._scope == Scope.SINGLETON:
-            ServiceLocator.instance().register(self._service, prototype(provider), self._qualifier)
-        else:
             ServiceLocator.instance().register(self._service, singleton(provider()), self._qualifier)
+        else:
+            ServiceLocator.instance().register(self._service, prototype(provider), self._qualifier)
 
 
 class ServiceProxy(object):

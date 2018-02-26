@@ -4,7 +4,7 @@ import re
 
 def generate_providers_configuration(module_path):
     compiled_re = re.compile('^\s*@(\w+\.)*ServiceProvider\s*\(.*$')
-    _hash = {}
+    providers = {}
     for root, dirs, files in os.walk(module_path):
         for f in files:
             name, ext = os.path.splitext(f)
@@ -15,11 +15,11 @@ def generate_providers_configuration(module_path):
                     with open(os.path.join(root, f), encoding="utf8") as in_file:
                         for line in in_file:
                             if compiled_re.search(line):
-                                if root not in _hash:
-                                    _hash[root] = []
-                                _hash[root].append(name)
+                                if root not in providers:
+                                    providers[root] = []
+                                providers[root].append(name)
                                 break
-    for key, values in _hash.items():
+    for key, values in providers.items():
         path = os.path.join(key, '_services.py')
         print("Creating %s file" % path)
         with open(path, 'w+') as out_file:
