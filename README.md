@@ -12,6 +12,7 @@ The [service locator pattern](https://en.wikipedia.org/wiki/Service_locator_patt
 ### Prerequisites
 * Python version: >= 3.4
 * [setuptools](https://pypi.python.org/pypi/setuptools)
+* [setuptools-markdown](https://pypi.python.org/pypi/setuptools-markdown)
 
 ### Installing
 ```
